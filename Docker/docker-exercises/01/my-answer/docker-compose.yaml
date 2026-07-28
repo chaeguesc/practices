@@ -1,0 +1,19 @@
+services:
+  mongo:
+    image: mongo:3.0.15
+    ports:
+      - "27017:27017"
+  web-nodejs:
+    image: node:6.9.1-alpine
+    ports:
+      - "3000:3000"
+    working_dir: /work
+    volumes:
+      - ./:/work
+    environment:
+      - MONGO_IP=mongo
+      - NODE_ENV=${NODE_ENV}
+    depends_on:
+      mongo:
+        condition: service_started
+    command: node ./server.js
