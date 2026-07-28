@@ -1,0 +1,12 @@
+services:
+  httpd:
+    image: httpd:alpine
+    container_name: prueba1
+    ports:
+      - "80:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
