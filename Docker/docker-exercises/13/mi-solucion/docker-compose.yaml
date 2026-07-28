@@ -1,0 +1,16 @@
+services:
+  contenedor1:
+    container_name: pod1
+    image: alpine
+    command: ['sh', '-c', 'ping pod2']
+    networks:
+      - net
+  contenedor2:
+    container_name: pod2
+    image: alpine
+    command: ['sh', '-c', 'ping pod1']
+    networks:
+      - net
+
+networks:
+  net:
