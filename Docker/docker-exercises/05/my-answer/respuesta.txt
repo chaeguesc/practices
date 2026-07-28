@@ -1,0 +1,11 @@
+1.
+FROM scratch indica que la imagen será creada desde cero, sin sistema operativo base salvo los archivos indicados.
+En este caso la imágen tendrá el tamaño del archivo en cuestión, que es a.txt
+
+2.
+Al exportar la imagen a un archivo .tar, esta pesará lo que pesa el archivo más unos pocos Kb de metadata de Docker.
+
+3.
+No hay nad más dentro de la imagen
+
+docker history my-image
