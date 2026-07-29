@@ -1,0 +1,23 @@
+services:
+  fluentd-container:
+    image: fluent/fluentd:v1.16-debian-1
+    user: root
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    volumes:
+      - ./fluent.conf:/fluentd/etc/fluent.conf
+      - /data:/fluentd/log
+
+  apache-container:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    depends_on:
+     - fluentd-container
+    logging:
+       driver: fluentd
+       options:
+         fluentd-address: localhost:24224
+         tag: apache.access
+
