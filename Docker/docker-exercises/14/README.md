@@ -14,18 +14,7 @@ Now try this
 
 Did you get the output that you expected?
 
-R: Sí
-
 Which resource did you get the output for?
-
-R: El contenedor que se llamó para el comando date
 
 How can you get the metadata for exactly what you want?
 
-RESPUESTA:
-
-docker tipoelemento inspect nombre
-
-docker volume inspect testthing
-docker network inspect testthing
-docker image inspect testthing
