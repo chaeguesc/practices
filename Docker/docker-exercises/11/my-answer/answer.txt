@@ -1,0 +1,9 @@
+## Run instructions
+
+# Dado que alpine usa como ENTRYPOINT sh, puedes llamar directamente al comando cat.
+
+
+docker run --rm alpine:latest cat /etc/hosts
+
+docker exec -ti test1 cat /etc/hosts
+
