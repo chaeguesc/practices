@@ -1,0 +1,3 @@
+Using docker inspect to see the image metadata.
+
+docker inspect nombreImagen
