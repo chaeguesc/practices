@@ -1,0 +1,73 @@
+tar commands look like the following:
+
+- list tar archive contents - tar tvf archive
+
+El contenido del tar de manera simbolica, se puede observar los hashes de las capas de la imágen
+A cada capa se le asigna un hash único
+
+drwxr-xr-x 0/0               0 1969-12-31 18:00 blobs/
+drwxr-xr-x 0/0               0 1969-12-31 18:00 blobs/sha256/
+-r--r--r-- 0/0            9218 1969-12-31 18:00 blobs/sha256/28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+-r--r--r-- 0/0         3846391 1969-12-31 18:00 blobs/sha256/55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a4
+-r--r--r-- 0/0            5638 1969-12-31 18:00 blobs/sha256/56dceff11b3396976a334a95c6a2816e051a060123c719b35e4fc5104a962f7f
+-r--r--r-- 0/0            1022 1969-12-31 18:00 blobs/sha256/79ff19e9084a00eece421b2523fb93e22d730e2c0e525905de047e848e56d95f
+-r--r--r-- 0/0             241 1969-12-31 18:00 blobs/sha256/baaf71820fc21cb22d4a78b061f47641e2caca5c476d1d3cd4acaf5c85122e7e
+-r--r--r-- 0/0             611 1969-12-31 18:00 blobs/sha256/d529dd0c6e5597ac7e4a3e2dea65c3fcc6173f4cae713c409265c1dd9914a11b
+-r--r--r-- 0/0             838 1969-12-31 18:00 blobs/sha256/f21951a6120df0f5f9329311202f7869e7b70120f4748632d58753cff662b126
+-r--r--r-- 0/0           79673 1969-12-31 18:00 blobs/sha256/f5124fb579e27b9769a8ce0158cb650168246572098b5095ecbf8e605488afb6
+-rw-r--r-- 0/0             423 1969-12-31 18:00 index.json
+-rw-r--r-- 0/0             212 1969-12-31 18:00 manifest.json
+-r--r--r-- 0/0              30 1969-12-31 18:00 oci-layout
+
+
+
+- extract tar archive contents - tar xvf archive
+
+
+Se extrae el contenido del archivo .tar
+Dentro del directorio blobs, se encuentra el sistema de archivos organizado por hashes
+
+
+
+[manager@rockymachinelab my-answer]$ tar -xvf alpine 
+blobs/
+blobs/sha256/
+blobs/sha256/28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+blobs/sha256/55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a4
+blobs/sha256/56dceff11b3396976a334a95c6a2816e051a060123c719b35e4fc5104a962f7f
+blobs/sha256/79ff19e9084a00eece421b2523fb93e22d730e2c0e525905de047e848e56d95f
+blobs/sha256/baaf71820fc21cb22d4a78b061f47641e2caca5c476d1d3cd4acaf5c85122e7e
+blobs/sha256/d529dd0c6e5597ac7e4a3e2dea65c3fcc6173f4cae713c409265c1dd9914a11b
+blobs/sha256/f21951a6120df0f5f9329311202f7869e7b70120f4748632d58753cff662b126
+blobs/sha256/f5124fb579e27b9769a8ce0158cb650168246572098b5095ecbf8e605488afb6
+index.json
+manifest.json
+oci-layout
+[manager@rockymachinelab my-answer]$ ll
+total 3880
+drwxr-xr-x. 3 manager manager     108 Aug  8 12:06 .
+drwxr-xr-x. 4 manager manager      54 Aug  8 12:04 ..
+-rw-------. 1 manager manager 3955200 Aug  8 12:04 alpine
+-rw-r--r--. 1 manager manager    1582 Aug  8 12:06 answer.txt
+drwxr-xr-x. 3 manager manager      20 Dec 31  1969 blobs
+-rw-r--r--. 1 manager manager     423 Dec 31  1969 index.json
+-rw-r--r--. 1 manager manager     212 Dec 31  1969 manifest.json
+-r--r--r--. 1 manager manager      30 Dec 31  1969 oci-layout
+[manager@rockymachinelab my-answer]$ ll blobs/
+total 4
+drwxr-xr-x. 3 manager manager   20 Dec 31  1969 .
+drwxr-xr-x. 3 manager manager  108 Aug  8 12:06 ..
+drwxr-xr-x. 2 manager manager 4096 Dec 31  1969 sha256
+[manager@rockymachinelab my-answer]$ ll blobs/sha256/
+total 3880
+drwxr-xr-x. 2 manager manager    4096 Dec 31  1969 .
+drwxr-xr-x. 3 manager manager      20 Dec 31  1969 ..
+-r--r--r--. 1 manager manager    9218 Dec 31  1969 28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+-r--r--r--. 1 manager manager 3846391 Dec 31  1969 55afa1ecc21d2bb5e5045f32dafee56272ffd89860bac26f6c32123439af26a4
+-r--r--r--. 1 manager manager    5638 Dec 31  1969 56dceff11b3396976a334a95c6a2816e051a060123c719b35e4fc5104a962f7f
+-r--r--r--. 1 manager manager    1022 Dec 31  1969 79ff19e9084a00eece421b2523fb93e22d730e2c0e525905de047e848e56d95f
+-r--r--r--. 1 manager manager     241 Dec 31  1969 baaf71820fc21cb22d4a78b061f47641e2caca5c476d1d3cd4acaf5c85122e7e
+-r--r--r--. 1 manager manager     611 Dec 31  1969 d529dd0c6e5597ac7e4a3e2dea65c3fcc6173f4cae713c409265c1dd9914a11b
+-r--r--r--. 1 manager manager     838 Dec 31  1969 f21951a6120df0f5f9329311202f7869e7b70120f4748632d58753cff662b126
+-r--r--r--. 1 manager manager   79673 Dec 31  1969 f5124fb579e27b9769a8ce0158cb650168246572098b5095ecbf8e605488afb6
+
